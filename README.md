@@ -1,19 +1,29 @@
 # eight-track-normalize-multipart [![Build status](https://travis-ci.org/twolfson/eight-track-normalize-multipart.png?branch=master)](https://travis-ci.org/twolfson/eight-track-normalize-multipart)
 
-multipart/form-data normalize function for eight-track
+`multipart/form-data` normalize function for [eight-track][].
+
+[eight-track]: https://github.com/uber/eight-track
+
+This was built to support easier testing against servers that accept `mutlipart/form-data`.
 
 ## Getting Started
 Install the module with: `npm install eight-track-normalize-multipart`
 
 ```javascript
-var eight_track_normalize_multipart = require('eight-track-normalize-multipart');
-eight_track_normalize_multipart.awesome(); // "awesome"
+// Load in dependencies
+var normalizeMultipart = require('eight-track-normalize-multipart');
+var express = require('express');
+var eightTrack = require('eight-track');
+
+// Create eight-track server that is normalizes multipart/form-data boundaries
+express().use(eightTrack({
+  url: 'http://localhost:1337',
+  fixtureDir: 'directory/to/save/responses',
+  normalizeFn: normalizeMultipart
+})).listen(1338);
 ```
 
 ## Documentation
-_(Coming soon)_
-
-## Examples
 _(Coming soon)_
 
 ## Contributing
