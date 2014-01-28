@@ -1,0 +1,44 @@
+{
+  "name": "eight-track-normalize-multipart",
+  "description": "multipart/form-data normalize function for eight-track",
+  "version": "0.1.0",
+  "homepage": "https://github.com/twolfson/eight-track-normalize-multipart",
+  "author": {
+    "name": "Todd Wolfson",
+    "email": "todd@twolfson.com",
+    "url": "http://twolfson.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/twolfson/eight-track-normalize-multipart.git"
+  },
+  "bugs": {
+    "url": "https://github.com/twolfson/eight-track-normalize-multipart/issues"
+  },
+  "licenses": [
+    {
+      "type": "UNLICENSE",
+      "url": "https://github.com/twolfson/eight-track-normalize-multipart/blob/master/UNLICENSE"
+    }
+  ],
+  "main": "lib/eight-track-normalize-multipart",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "mocha": "~1.11.0",
+    "grunt": "~0.4.1",
+    "grunt-contrib-jshint": "~0.6.0",
+    "grunt-contrib-watch": "~0.4.0"
+  },
+  "keywords": [
+    "multipart",
+    "form-data",
+    "normalize",
+    "eight-track"
+  ]
+}
