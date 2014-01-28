@@ -34,9 +34,6 @@ describe('An `eight-track` server using `normalize-multipart`', function () {
       var form = req.form();
       form.append('hello', 'world');
     });
-    before(function () {
-      this.origBody = this.body;
-    });
 
     it('processes the request', function () {
       expect(this.err).to.equal(null);
@@ -44,21 +41,44 @@ describe('An `eight-track` server using `normalize-multipart`', function () {
     });
 
     describe('receiving the same request but with different boundaries', function () {
-      it('receives the same response', function () {
+      before(function (done) {
+        // Make request (it might look the same but boundaries are different)
+        var req = httpUtils._save({
+          method: 'POST',
+          url: 'http://localhost:1338/'
+        }).call(this, done);
 
+        // Before request completes, send some data
+        var form = req.form();
+        form.append('hello', 'world');
+      });
+
+      it('receives the same response', function () {
+        expect(this.err).to.equal(null);
+        expect(JSON.parse(this.body).fields).to.have.property('hello', 'world');
       });
 
       it('does not touch the server twice', function () {
-
+        expect(this.requests[1337]).to.have.property('length', 1);
       });
 
       describe('receiving a different request', function () {
-        it('receives a different response', function () {
+        before(function (done) {
+          var req = httpUtils._save({
+            method: 'POST',
+            url: 'http://localhost:1338/'
+          }).call(this, done);
+          var form = req.form();
+          form.append('goodbye', 'moon');
+        });
 
+        it('receives a different response', function () {
+          expect(this.err).to.equal(null);
+          expect(JSON.parse(this.body).fields).to.have.property('goodbye', 'moon');
         });
 
         it('is a separate server touch', function () {
-
+          expect(this.requests[1337]).to.have.property('length', 2);
         });
       });
     });
