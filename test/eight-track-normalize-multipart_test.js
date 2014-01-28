@@ -19,8 +19,17 @@ describe('An `eight-track` server using `normalize-multipart`', function () {
   });
 
   describe('receiving a multipart form request', function () {
-    it('processes the request', function () {
+    httpUtils.save({
+      url: 'http://localhost:1338/',
+      multipart: [
+        {'body': 'hello'},
+        {'body': 'world'}
+      ]
+    });
 
+    it('processes the request', function () {
+      expect(this.err).to.equal(null);
+      expect(JSON.parse(this.body)).to.equal('wat');
     });
 
     describe('receiving the same request but with different boundaries', function () {
