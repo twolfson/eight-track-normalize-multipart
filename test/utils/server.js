@@ -1,6 +1,6 @@
+var eightTrack = require('eight-track');
 var express = require('express');
 var rimraf = require('rimraf');
-var eightTrack = require('../../');
 
 before(function () {
   this.requests = {};

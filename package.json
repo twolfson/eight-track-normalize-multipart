@@ -40,7 +40,8 @@
     "express": "~3.4.8",
     "chai": "~1.8.1",
     "request": "~2.33.0",
-    "rimraf": "~2.2.6"
+    "rimraf": "~2.2.6",
+    "formidable": "~1.0.14"
   },
   "keywords": [
     "multipart",

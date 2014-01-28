@@ -1,15 +1,19 @@
 var fs = require('fs');
 var expect = require('chai').expect;
-var express = require('express');
+var formidable = require('formidable');
 var normalizeMultipart = require('../');
 var httpUtils = require('./utils/http');
 var serverUtils = require('./utils/server');
 
 describe('An `eight-track` server using `normalize-multipart`', function () {
   serverUtils.run(1337, function (req, res) {
-    express.multipart()(req, res, function (err) {
-      if (err) { throw err; }
-      res.send(req.body);
+    var form = new formidable.IncomingForm();
+    form.parse(req, function (err, fields, files) {
+      res.send({
+        err: err,
+        fields: fields,
+        files: files
+      });
     });
   });
   serverUtils.runEightServer(1338, {
@@ -26,10 +30,13 @@ describe('An `eight-track` server using `normalize-multipart`', function () {
         {'body': 'world'}
       ]
     });
+    before(function () {
+      this.origBody = this.body;
+    });
 
     it('processes the request', function () {
       expect(this.err).to.equal(null);
-      expect(JSON.parse(this.body)).to.equal('wat');
+      expect(JSON.parse(this.body)).to.have.property('fields');
     });
 
     describe('receiving the same request but with different boundaries', function () {
