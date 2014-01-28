@@ -29,7 +29,7 @@ express().use(eightTrack({
 ### `normalizeMultipart`
 Function that has the signature as expected by [eight-track's `normalizeFn` parameter][eight-track-options]. It is designed to mutate `info` but will not corrupt original `request` data.
 
-https://github.com/uber/eight-track/tree/1.3.0#eighttrackoptions
+[More information can be found in the specification][eight-track-options].
 
 [eight-track-options]: https://github.com/uber/eight-track/tree/1.3.0#eighttrackoptions
 
