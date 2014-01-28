@@ -6,7 +6,7 @@ exports._save = function (options) {
   // Request to the URL and save results to `this` context
   return function _saveFn (done) {
     var that = this;
-    request(options, function (err, res, body) {
+    return request(options, function (err, res, body) {
       that.err = err;
       that.res = res;
       that.body = body;

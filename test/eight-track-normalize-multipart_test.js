@@ -25,17 +25,12 @@ describe('An `eight-track` server using `normalize-multipart`', function () {
 
   describe('receiving a multipart form request', function () {
     before(function (done) {
-      var r = request.post('http://localhost:1338/');
+      var r = httpUtils._save({
+        method: 'POST',
+        url: 'http://localhost:1338/'
+      }).call(this, done);
       var form = r.form();
       form.append('hello', 'world');
-
-      var that = this;
-      r.on('complete', function (res, body) {
-        console.log(res, body);
-        that.res = res;
-        that.body = body;
-        done();
-      });
     });
     before(function () {
       this.origBody = this.body;
