@@ -83,4 +83,21 @@ describe('An `eight-track` server using `normalize-multipart`', function () {
       });
     });
   });
+
+  describe('receiving a GET request', function () {
+    httpUtils.save('http://localhost:1338/');
+
+    it('handles the request', function () {
+      expect(this.err).to.equal(null);
+      expect(this.res.statusCode).to.equal(200);
+    });
+
+    it('sends back no field data', function () {
+      expect(JSON.parse(this.body)).to.deep.equal({err: null, fields: {}, files: {}});
+    });
+
+    it('is another server touch', function () {
+      expect(this.requests[1337]).to.have.property('length', 3);
+    });
+  });
 });
