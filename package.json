@@ -1,7 +1,7 @@
 {
   "name": "eight-track-normalize-multipart",
   "description": "multipart/form-data normalize function for eight-track",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "homepage": "https://github.com/twolfson/eight-track-normalize-multipart",
   "author": {
     "name": "Todd Wolfson",
